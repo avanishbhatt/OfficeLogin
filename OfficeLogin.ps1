@@ -7,7 +7,7 @@ if (-not (Get-Module -ListAvailable -Name Selenium)) {
 Import-Module Selenium
 
 # Setting up the Chrome Driver
-$webDriverDirectory = "C:\Users\HP\Downloads\chromedriver\" # Path to the directory of Chrome Driver 
+$webDriverDirectory = "C:\Users\HP\Downloads\ChromeDriver\" # Path to the directory of Chrome Driver 
 $driver = Start-SeChrome -WebDriverDirectory $webDriverDirectory
 
 # Open the URL in Chrome browser
@@ -28,10 +28,8 @@ $pinField.SendKeys("<Your-PIN>"+$securID)
 $goButton.Click()
 
 $hostedDesktopButton = $wait.Until([OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVisible([OpenQA.Selenium.By]::XPath("//a[contains(text(), 'Hosted Desktop')]")))
-
 $hostedDesktopButton.Click()
 
-# Opening the downloaded file
 $filePath = "C:\Users\HP\Downloads\launchExtMSAD.ica"
 
 $timeout = (Get-Date).AddSeconds(20)
