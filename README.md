@@ -6,7 +6,7 @@ This project automates the login process to a hosted desktop environment using a
 
 ### 1. Set the Path to ChromeDriver
 
-You will need to set the path to the directory where `chromedriver.exe` is located. The `chromedriver.exe` used in this project is included in the repository under the `ChromeBrowser` folder.
+You will need to set the path to the directory where `chromedriver.exe` is located. The `chromedriver.exe` used in this project is included in the repository under the `chromedriver-win64` folder.
 
 If you need a different version of ChromeDriver, you can download it from the following sources:
 - [ChromeDriver Downloads](https://sites.google.com/chromium.org/driver/downloads)
