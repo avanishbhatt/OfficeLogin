@@ -6,8 +6,16 @@ if (-not (Get-Module -ListAvailable -Name Selenium)) {
 # Importing the Selenium module
 Import-Module Selenium
 
+$input = [int](Read-Host "Enter 0 for Mobile Auth or 1 for Physical RSA")
+
+if ($input) {
+    $securID = Read-Host "Enter the RSA Token"
+} else {
+    $securID = Read-Host "Enter the Mobile Auth Token"
+}
+
 # Setting up the Chrome Driver
-$webDriverDirectory = "C:\Users\HP\Downloads\ChromeDriver\" # Path to the directory of Chrome Driver 
+$webDriverDirectory = "C:\Users\HP\Downloads\chromedriver-win64\" # Path to the directory of Chrome Driver 
 $driver = Start-SeChrome -WebDriverDirectory $webDriverDirectory
 
 # Open the URL in Chrome browser
@@ -23,8 +31,11 @@ $goButton = $driver.FindElementByXPath("//button[contains(@class, 'loginActionBt
 
 $usernameField.SendKeys("<Your-UserName>")
 $passwordField.SendKeys("Your-Password")
-$securID = Read-Host "Enter the RSA Token"
-$pinField.SendKeys("<Your-PIN>"+$securID)
+if ($input) {
+    $pinField.SendKeys("<Your-PIN>"+$securID)
+} else {
+    $pinField.SendKeys($securID)
+}
 $goButton.Click()
 
 $hostedDesktopButton = $wait.Until([OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVisible([OpenQA.Selenium.By]::XPath("//a[contains(text(), 'Hosted Desktop')]")))
